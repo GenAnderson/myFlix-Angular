@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { MatDialog } from '@angular/material/dialog';
 import { DetailBoxComponent } from '../detail-box/detail-box.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-movie-card',
@@ -12,9 +13,11 @@ import { DetailBoxComponent } from '../detail-box/detail-box.component';
 })
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
+  favoriteMovies: any[] = [];
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
+    public snackBar: MatSnackBar,
     private router: Router
   ) {}
 
@@ -65,5 +68,27 @@ export class MovieCardComponent implements OnInit {
         content: description.Description,
       },
     });
+  }
+
+  addFavorite(id: string): void {
+    this.fetchApiData.addFavoriteMovie(id).subscribe((res) => {
+      this.snackBar.open('Saved to favorites', 'ok', {
+        duration: 2000,
+      });
+      this.favoriteMovies = res.FavoriteMovies;
+    });
+  }
+
+  deleteFavorite(id: string): void {
+    this.fetchApiData.deleteFavoriteMovie(id).subscribe((res) => {
+      this.snackBar.open('Deleted from favorites', 'ok', {
+        duration: 2000,
+      });
+      this.favoriteMovies = res.FavoriteMovies;
+    });
+  }
+
+  isFavorite(id: string): boolean {
+    return this.favoriteMovies.includes(id);
   }
 }
