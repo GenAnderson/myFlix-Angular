@@ -90,6 +90,15 @@ export class FetchApiDataService {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
+  isFavoriteMovie(movieId: string): boolean {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    if (user) {
+      return user.FavoriteMovies.includes(movieId);
+    }
+
+    return false;
+  }
+
   // ADD A MOVIE TO FAVORITES
   addFavoriteMovie(movieId: string): Observable<any> {
     const token = localStorage.getItem('token');
@@ -132,10 +141,11 @@ export class FetchApiDataService {
   }
 
   // EDIT USER
-  editUser(username: string): Observable<any> {
+  editUser(updatedUser: any): Observable<any> {
     const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
     return this.http
-      .get<Response>(apiUrl + 'users/' + username, {
+      .put<Response>(apiUrl + 'users/' + user.Username, updatedUser, {
         headers: new HttpHeaders({ Authorization: 'Bearer ' + token }),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
