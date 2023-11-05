@@ -1,6 +1,20 @@
-# MyFlixAngular
+# MyFlix-Angular
+
+MyFlix-Angular allows users to discover and manage their favorite movies. This is the client side of my movieAPI project.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.1.
+
+## Features
+
+- App displays a welcome view with registration and sign-on options for users
+- Main app screen consists of a limited number of movies to select from
+- Navbar allows access to user profile and logout options
+- User profile allows you to make changes
+- Users can then interact with the movie cards:
+  - Select director for movie director info
+  - Select synopsis for movie synopsis
+  - Select Genre for movie genre
+  - Select/diselect the heart button to favorite
 
 ## Development server
 

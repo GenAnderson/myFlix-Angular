@@ -19,15 +19,23 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
+    "lib": ["ES2022", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
+  },
+  "typedocOptions": {
+    "entryPoints": [
+      "src/app/detail-box/detail-box.component.ts",
+      "src/app/movie-card/movie-card.component.ts",
+      "src/app/user-login-form/user-login-form.component.ts",
+      "src/app/user-profile/user-profile.component.ts",
+      "src/app/user-registration-form/user-registration-form.component.ts",
+      "src/app/welcome-page/welcome-page.component.ts"
+    ],
+    "out": "docs"
   }
 }
